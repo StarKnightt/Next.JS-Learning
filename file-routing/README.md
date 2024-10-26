@@ -34,4 +34,10 @@ export default function AboutPage() {
 - Visiting [LocalAbout](http://localhost:3000/about) will show this page.
 
 - So basically in file routing, we will create an another folder for different routes in the app folder.
-- suppose I need an about page, so I'll go into app folder then create an folder named as about, and inside that, I'll create a page.js, now if I'll redirect to [Page](http://localhost:3000/page), I can see that page.
+- suppose I need an about page, so I'll go into app folder then create an folder named as page.js, and inside that, I'll create a page.js, now if I'll redirect to [Page](http://localhost:3000/page), I can see that page.
+
+- We use "@" to import anything outside of the app folder in react js for example -
+
+```
+ import Navbar from "@/component/Navbar";
+```

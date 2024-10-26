@@ -11,3 +11,7 @@
 - It has SEO tools as well as different ways of rendering data.
 
 - It provides API routes, so that we can have back-end and front-end code in the same project.
+
+- We can see additonal features like router from next/navigation
+
+- We also see the optimized rendering.
