@@ -16,7 +16,6 @@
 
 - We also see the optimized rendering.
 
-
 ## Why did Next.js Introduce App Router?
 
 - The App Router is a new routing system introduced in Next.js 13. It replaces the previous file-based routing system and introduces several new features and improvements. Here are some of the key reasons why Next.js introduced the App Router.
