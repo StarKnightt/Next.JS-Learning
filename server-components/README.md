@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Server Components
 
-## Getting Started
+- It renders on the server and sent to the client as static HTML, reducing the need for JavaScript on the Client side.
 
-First, run the development server:
+- It means it will run on the server first then will reach to the client as static HTML.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- But if you still want to use client side code, you can use `use client` directive.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Digram: How it works in Next.js
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+                ┌────────────────────────────────────────────────────────┐
+                │               Next.js Application                     │
+                └────────────────────────────────────────────────────────┘
+                                   │
+                                   ▼
+                    ┌────────────────────────────────────────┐
+                    │            Page Request               │
+                    └────────────────────────────────────────┘
+                                   │
+                                   ▼
+        ┌──────────────────────────────────────────────────────────────────┐
+        │                        Server Components                         │
+        │                                                                  │
+        │ - Components run on the server only                              │
+        │ - Directly fetches data (e.g., from database, APIs)              │
+        │ - Generates static HTML to send to the client                    │
+        │                                                                  │
+        └──────────────────────────────────────────────────────────────────┘
+                                   │
+                                   ▼
+                    ┌────────────────────────────────────────┐
+                    │          HTML with Server Data        │
+                    └────────────────────────────────────────┘
+                                   │
+                                   ▼
+                ┌────────────────────────────────────────────────────────┐
+                │                       Client                          │
+                │                                                      │
+                │ - Receives static HTML from Server Components        │
+                │ - Minimal JavaScript for fast loading                │
+                │ - Interactivity added by Client Components only      │
+                └────────────────────────────────────────────────────────┘
+                                   │
+                                   ▼
+                   ┌──────────────────────────────────────────┐
+                   │               Client Components          │
+                   │    (Runs in the Browser only)            │
+                   └──────────────────────────────────────────┘
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Explantion.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Page Request: When a user requests a page, the Next.js app receives the request.
 
-## Deploy on Vercel
+2.  Server Components:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    - Server Components are rendered on the server.
+    - They fetch data directly from databases or APIs if needed.
+    - These components don’t have interactivity, so they’re converted to plain HTML with data.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. HTML with Server Data:
+
+    - The generated HTML is sent to the client.
+    - This HTML is ready to display as soon as it reaches the browser, which speeds up load times.
+
+4. Client:
+
+    - The client (browser) displays the HTML immediately.
+    - Client Components handle any interactive parts that need to run in the browser.
+
+5. Client Components:
+
+    - Only these components are sent as JavaScript to the browser.
+    - They handle user interactions, like button clicks or form inputs.
