@@ -108,4 +108,6 @@
 
 - But be careful, if you use server components, then you should remember where you used the client components, because those are going to be rendered on the client side.
 
-- Using it for backend is good, because it will reduce the client side JavaScript.+
+- Using it for backend is good, because it will reduce the client side JavaScript.
+
+- For example, if you want to use Navbar component in client side, and want to integrate it with server components, then you can simply create a new folder in `components` directory and create a new Navbar component in it and use it in your page.js file.
