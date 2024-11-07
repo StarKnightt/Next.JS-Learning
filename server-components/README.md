@@ -6,6 +6,16 @@
 
 - But if you still want to use client side code, you can use `use client` directive.
 
+## Why to use Server Components?
+
+- Better performance: Since Server Components don’t need JavaScript on the client, they reduce the amount of JavaScript sent to the user. This makes pages load faster, especially for users on slower networks.
+
+- Less JavaScript for the client:Reduces the "JavaScript bundle" size, making the client code much lighter and improving loading speed and responsiveness.
+
+- Improved SEO and accessibility: Server-rendered content is ready for search engines, improving SEO. It’s also fully accessible by the time it reaches the user.
+
+- Easier data fetching:Server Components can directly fetch data from your server or database, making data fetching more efficient and reducing the complexity of using client-side libraries for the same.
+
 
 ## Digram: How it works in Next.js
 
@@ -74,3 +84,28 @@
 
     - Only these components are sent as JavaScript to the browser.
     - They handle user interactions, like button clicks or form inputs.
+
+
+## Where to use Server Components?
+
+- Server Components are best for static content that doesn’t need interactivity.
+- They’re perfect for pages that are mostly static and don’t require much client-side processing.
+- Use them for components that don’t need to change based on user interactions.
+
+
+## How to use Server Components?
+
+- Basically, In Next.js, Server Components are automatically detected if they are in the `app` directory.
+- If you want to use Server Components in other directories, you need to export them as default.    
+- Everything is Server component in Next.js by default.
+
+## When to use server components?
+
+- Your component doesn’t need interactivity and only displays data.
+- You need to fetch data directly from the server or database.
+- You want to optimize the performance of your Next.js app by reducing client-side JavaScript.
+
+
+- But be careful, if you use server components, then you should remember where you used the client components, because those are going to be rendered on the client side.
+
+- Using it for backend is good, because it will reduce the client side JavaScript.+
