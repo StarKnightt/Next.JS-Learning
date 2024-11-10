@@ -110,3 +110,5 @@ export default ContactPage;
 - It automatically optimizes images for different screen sizes and devices, improving performance and reducing load times.
 
 - It also handles lazy loading, which means images are loaded only when they are needed, not all at once.
+
+- We need to configure the Image component by using the `next.config.js` file.
