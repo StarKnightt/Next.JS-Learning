@@ -85,6 +85,16 @@ export default ContactPage;
 
 - This code will prompt an alert when the page is loaded, means when you navigate to the contact page.
 
+## Diagram of the Script loading strategy
+
+```
+    Page Load     ───────────────►
+   
+   beforeInteractive   |----------------------|
+   afterInteractive             |-------------|
+   lazyOnload                       |---------| 
+```
+
 ## Optional Props
 
 - The loading strategy of the script. There are four different strategies that can be used:
@@ -112,3 +122,15 @@ export default ContactPage;
 - It also handles lazy loading, which means images are loaded only when they are needed, not all at once.
 
 - We need to configure the Image component by using the `next.config.js` file.
+
+- It even optimizes the images so good and maintain the image size as we add more customization on it.
+
+### Example -
+
+- check the 'app/page.js' file for the usage of Image component.
+
+### Diagram how image component works
+
+```
+   User Requests Image     ─────────►   Server Resizes and Optimizes ─────────► Optimized Image Delivered
+```
