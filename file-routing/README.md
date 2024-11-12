@@ -12,7 +12,7 @@
 
 ## Example 
 
-``` /my-next-app
+```jsx /my-next-app
  └── app
      ├── page.js      # Renders at "/"
      ├── about
@@ -24,7 +24,7 @@
 
 ## Code Example- 
 
-```
+```jsx
 export default function AboutPage() {
   return <h1>About Us (App Router)</h1>;
 }
@@ -38,7 +38,7 @@ export default function AboutPage() {
 
 - We use "@" to import anything outside of the app folder in react js for example -
 
-```
+```jsx
  import Navbar from "@/component/Navbar";
 ```
 
@@ -48,7 +48,7 @@ Just like in the pages/ directory, dynamic routes in the app/ directory are repr
 
 For example, to create a dynamic route for blog posts:
 
-```
+```jsx
 /app
  └── blog
      └── [id]
@@ -60,7 +60,7 @@ The App Router allows you to define reusable layouts at different levels. You ca
 
 
 ### For exmaple-
-```
+```jsx
 /app
  ├── layout.js      # Global layout for the entire app
  ├── page.js        # Homepage
@@ -70,7 +70,7 @@ The App Router allows you to define reusable layouts at different levels. You ca
 
 ```
 ### Code example for app/about/layout.js
-```
+```jsx
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
