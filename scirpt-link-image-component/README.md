@@ -20,7 +20,7 @@
 
 - For example,
 
-```
+```jsx
 // Import the Link component
 import Link from 'next/link';
 
@@ -59,7 +59,7 @@ export default HomePage;
 
 - For example,
 
-```
+```javascript
 import Script from 'next/script'
 
 function ContactPage() {
@@ -87,7 +87,7 @@ export default ContactPage;
 
 ## Diagram of the Script loading strategy
 
-```
+```jsx
     Page Load     ───────────────►
    
    beforeInteractive   |----------------------|
