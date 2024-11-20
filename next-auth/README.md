@@ -51,3 +51,16 @@ npm install next-auth
 ```bash
 npm install @next-auth/providers
 ```
+
+### Set-up
+
+- Be careful while setup, it's a little bit different.
+
+### Create API Route for next-auth
+
+```
+app/api/auth/[...nextauth]/route.js
+```
+
+- It's better to write it manually and create it.
+
