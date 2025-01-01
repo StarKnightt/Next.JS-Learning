@@ -96,3 +96,41 @@ export default function Error({ error, reset }) {
 - Includes a "Try Again" button to retry the action.
 
 ## 5. Custom Not FoundPage
+**File**: `app/not-found.js`
+```javascript
+export default function NotFound() {
+  return <h1>404 - Page Not Found</h1>;
+}
+```
+
+### How It Works
+- Renders when the `notFound()` function is called or when a route doesn't exist.
+
+## Dynamic Routing Flow
+
+- Here's a simple flowchart to explain how the routing works
+
+```sql
+
+                  ┌───────────────────────┐
+                  │      URL Request      │
+                  └───────────────────────┘
+                             ↓
+        ┌───────────────────────────────────────────┐
+        │  Is it a valid dynamic/static route?      │
+        └───────────────────────────────────────────┘
+                      │                      │
+                      │ Yes                  │ No
+                      ↓                      ↓
+      ┌─────────────────────────┐     ─────────────────┐
+      │ Serve the correct page  │    │ Show NotFound Page          │
+       
+```
+
+## Conclusion:
+
+- **Dynamic Routes:** Use `[param]` or `[...param]` to capture parts of the URL.
+
+-  **Route Validation:** Add conditional logic to handle invalid routes `(e.g., notFound())`.
+
+- **Custom Pages:** Add custom `error.js` and `not-found.js` for better user experience.
