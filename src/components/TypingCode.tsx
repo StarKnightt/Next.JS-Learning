@@ -2,52 +2,93 @@
 
 import { useEffect, useState } from "react";
 
+interface Token {
+  text: string;
+  color: string;
+}
+
+const tokenize = (line: string): Token[] => {
+  const tokens: Token[] = [];
+  let remaining = line;
+
+  while (remaining.length > 0) {
+    let matched = false;
+
+    const patterns: [RegExp, string][] = [
+      [/^(export default|async|const|await|return)/, "#c084fc"],
+      [/^(function)/, "#60a5fa"],
+      [/^(Home)/, "#fde047"],
+      [/^("[^"]*")/, "#4ade80"],
+      [/^(\/\/.*)/, "#6b7280"],
+      [/^(<\/?[a-zA-Z][a-zA-Z0-9]*\s*\/?>)/, "#93c5fd"],
+      [/^(\{[^}]*\})/, "#e0e0e0"],
+    ];
+
+    for (const [pattern, color] of patterns) {
+      const match = remaining.match(pattern);
+      if (match) {
+        tokens.push({ text: match[0], color });
+        remaining = remaining.slice(match[0].length);
+        matched = true;
+        break;
+      }
+    }
+
+    if (!matched) {
+      const nextSpecial = remaining.slice(1).search(/export|async|const|await|return|function|Home|"|\/\/|<|{/);
+      if (nextSpecial === -1) {
+        tokens.push({ text: remaining, color: "#e0e0e0" });
+        remaining = "";
+      } else {
+        tokens.push({ text: remaining.slice(0, nextSpecial + 1), color: "#e0e0e0" });
+        remaining = remaining.slice(nextSpecial + 1);
+      }
+    }
+  }
+
+  return tokens;
+};
+
 const lines = [
-  { text: "export default async function Home() {", delay: 0 },
-  { text: "  // Fetches on the server", delay: 600 },
-  { text: '  const posts = await fetch("/api/posts")', delay: 1200 },
-  { text: "", delay: 1800 },
-  { text: "  return (", delay: 2000 },
-  { text: "    <main>", delay: 2300 },
-  { text: "      <h1>My Blog</h1>", delay: 2600 },
-  { text: "      // Zero client JS for this page", delay: 3000 },
-  { text: "      {posts.map((p) => <Card key={p.id} />)}", delay: 3400 },
-  { text: "    </main>", delay: 3800 },
-  { text: "  )", delay: 4000 },
-  { text: "}", delay: 4200 },
+  "export default async function Home() {",
+  "  // Fetches on the server",
+  '  const posts = await fetch("/api/posts")',
+  "",
+  "  return (",
+  "    <main>",
+  "      <h1>My Blog</h1>",
+  "      // Zero client JS for this page",
+  "      {posts.map((p) => <Card />)}",
+  "    </main>",
+  "  )",
+  "}",
 ];
 
 export function TypingCode() {
   const [visibleLines, setVisibleLines] = useState(0);
-  const [currentText, setCurrentText] = useState("");
-  const [isTyping, setIsTyping] = useState(true);
+  const [charCount, setCharCount] = useState(0);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (visibleLines >= lines.length) {
-      setIsTyping(false);
-      return;
-    }
+    if (done) return;
 
-    const lineTimeout = setTimeout(() => {
-      const line = lines[visibleLines].text;
-      let charIndex = 0;
+    const timer = setTimeout(() => {
+      if (visibleLines >= lines.length) {
+        setDone(true);
+        return;
+      }
 
-      const typeInterval = setInterval(() => {
-        if (charIndex <= line.length) {
-          setCurrentText(line.slice(0, charIndex));
-          charIndex++;
-        } else {
-          clearInterval(typeInterval);
-          setVisibleLines((v) => v + 1);
-          setCurrentText("");
-        }
-      }, 20);
+      const currentLine = lines[visibleLines];
+      if (charCount >= currentLine.length) {
+        setVisibleLines((v) => v + 1);
+        setCharCount(0);
+      } else {
+        setCharCount((c) => c + 1);
+      }
+    }, charCount === 0 && visibleLines > 0 ? 80 : 25);
 
-      return () => clearInterval(typeInterval);
-    }, visibleLines === 0 ? 500 : 150);
-
-    return () => clearTimeout(lineTimeout);
-  }, [visibleLines]);
+    return () => clearTimeout(timer);
+  }, [visibleLines, charCount, done]);
 
   return (
     <div className="brutal-border bg-[#1a1a1a] brutal-shadow-lg">
@@ -57,59 +98,33 @@ export function TypingCode() {
         <span className="w-3 h-3 rounded-full bg-brutal-lime" />
         <span className="ml-3 text-xs text-white/50 font-mono">app/page.tsx</span>
       </div>
-      <pre className="p-5 text-sm font-mono leading-relaxed overflow-hidden border-0 shadow-none min-h-[280px]">
-        <code>
-          {lines.slice(0, visibleLines).map((line, i) => (
-            <div key={i}>
-              <span className="inline-block w-6 text-right mr-3 text-white/20 text-xs select-none">
-                {i + 1}
-              </span>
-              <LineHighlight text={line.text} />
-            </div>
-          ))}
-          {visibleLines < lines.length && (
-            <div>
-              <span className="inline-block w-6 text-right mr-3 text-white/20 text-xs select-none">
-                {visibleLines + 1}
-              </span>
-              <LineHighlight text={currentText} />
-              {isTyping && (
-                <span className="inline-block w-[2px] h-4 bg-brutal-yellow ml-[1px] animate-pulse" />
-              )}
-            </div>
-          )}
-        </code>
-      </pre>
+      <div className="p-5 font-mono text-sm leading-relaxed min-h-[280px] overflow-hidden">
+        {lines.slice(0, visibleLines).map((line, i) => (
+          <div key={i} className="flex">
+            <span className="w-6 text-right mr-3 text-white/20 text-xs select-none shrink-0 pt-[2px]">
+              {i + 1}
+            </span>
+            <span className="whitespace-pre">
+              {tokenize(line).map((token, j) => (
+                <span key={j} style={{ color: token.color }}>{token.text}</span>
+              ))}
+            </span>
+          </div>
+        ))}
+        {!done && visibleLines < lines.length && (
+          <div className="flex">
+            <span className="w-6 text-right mr-3 text-white/20 text-xs select-none shrink-0 pt-[2px]">
+              {visibleLines + 1}
+            </span>
+            <span className="whitespace-pre">
+              {tokenize(lines[visibleLines].slice(0, charCount)).map((token, j) => (
+                <span key={j} style={{ color: token.color }}>{token.text}</span>
+              ))}
+              <span className="inline-block w-[2px] h-[14px] bg-brutal-yellow animate-pulse align-middle" />
+            </span>
+          </div>
+        )}
+      </div>
     </div>
   );
-}
-
-function LineHighlight({ text }: { text: string }) {
-  const highlighted = text
-    .replace(
-      /(export default|async|const|await|return)/g,
-      '<span class="text-purple-400">$1</span>'
-    )
-    .replace(
-      /(function)/g,
-      '<span class="text-blue-400">$1</span>'
-    )
-    .replace(
-      /(Home)/g,
-      '<span class="text-yellow-300">$1</span>'
-    )
-    .replace(
-      /("\/api\/posts")/g,
-      '<span class="text-green-400">$1</span>'
-    )
-    .replace(
-      /(\/\/.*)/g,
-      '<span class="text-gray-500">$1</span>'
-    )
-    .replace(
-      /(<\/?[a-zA-Z]+>?|<Card[^/]*\/>)/g,
-      '<span class="text-blue-300">$1</span>'
-    );
-
-  return <span className="text-white" dangerouslySetInnerHTML={{ __html: highlighted }} />;
 }
