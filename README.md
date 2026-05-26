@@ -1,71 +1,115 @@
-# ⚡ Next.js Learning — by Prasen
+# Next.js Learning
 
-A complete, opinionated guide to mastering Next.js — from absolute basics to production-ready patterns. Built as a **neo-brutalism styled website** that teaches through clear explanations, real code examples, and visual diagrams.
+A hands-on guide to mastering Next.js, from fundamentals to production patterns. Built as a fully functional teaching website with neo-brutalism design, interactive code examples, and visual architecture diagrams.
 
-## What's Inside
+**Live site:** [localhost:3000](http://localhost:3000) (run locally) | Deploy to [Vercel](https://vercel.com) with one click
 
-| Level | Topics |
-|-------|--------|
-| **Beginner** | What is Next.js, File Routing, Layouts, Link/Image/Script, Styling |
-| **Intermediate** | Dynamic Routes, Server vs Client Components, Data Fetching, Server Actions, API Routes, Middleware, Loading/Error States |
-| **Advanced** | Authentication (Auth.js v5), Parallel/Intercepting Routes, Streaming, PPR, Deployment |
+---
+
+## Curriculum
+
+| Level | Chapters | Topics |
+|-------|----------|--------|
+| Beginner | 01-05 | What is Next.js, File Routing, Layouts & Metadata, Link/Image/Script, Styling |
+| Intermediate | 06-12 | Dynamic Routes, Server vs Client Components, Data Fetching & Caching, Server Actions, Route Handlers, Middleware, Loading & Error States |
+| Advanced | 13-15 | Authentication (Auth.js v5), Parallel & Intercepting Routes, PPR, Deployment |
+
+15 chapters. 50+ code examples. 3 skill levels.
+
+---
 
 ## Tech Stack
 
-- **Next.js 16** (App Router)
-- **React 19** (Server Components, useActionState)
-- **TypeScript**
-- **Tailwind CSS v4**
-- **Neo-Brutalism Design** (bold borders, offset shadows, bright colors)
+| Tool | Version | Purpose |
+|------|---------|---------|
+| Next.js | 16 | Framework (App Router, Turbopack) |
+| React | 19 | UI (Server Components, useActionState) |
+| TypeScript | 5 | Type safety |
+| Tailwind CSS | 4 | Styling (utility-first, no config file) |
+| Framer Motion | latest | Animations (typing effect, scroll reveals) |
 
-## Getting Started
+---
+
+## Quick Start
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
-
-# Build for production
-npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the site.
+Open [http://localhost:3000](http://localhost:3000).
+
+For production build:
+
+```bash
+npm run build
+npm start
+```
+
+---
 
 ## Project Structure
 
 ```
 src/
 ├── app/
-│   ├── page.tsx              # Homepage with chapter listing
-│   ├── layout.tsx            # Root layout (nav + footer)
-│   ├── roadmap/page.tsx      # Visual learning roadmap with diagrams
-│   └── chapters/[slug]/      # Dynamic chapter pages
-│       └── page.tsx
+│   ├── page.tsx                  Homepage with chapter listing
+│   ├── layout.tsx                Root layout (navbar, footer)
+│   ├── not-found.tsx             Custom 404 page
+│   ├── globals.css               Neo-brutalism design tokens
+│   ├── roadmap/
+│   │   └── page.tsx              Visual learning roadmap + diagrams
+│   └── chapters/[slug]/
+│       └── page.tsx              Dynamic chapter renderer
 ├── components/
-│   ├── Navbar.tsx            # Navigation bar
-│   ├── Footer.tsx            # Footer
-│   ├── CodeBlock.tsx         # Syntax-highlighted code blocks
-│   ├── Callout.tsx           # Info/warning/tip callout boxes
-│   └── ChapterCard.tsx       # Chapter listing cards
+│   ├── Navbar.tsx                Top navigation
+│   ├── Footer.tsx                Site footer
+│   ├── CodeBlock.tsx             Syntax-highlighted code with copy
+│   ├── Callout.tsx               Info/warning/tip boxes
+│   ├── ChapterCard.tsx           Chapter listing cards
+│   ├── TypingCode.tsx            Animated typing code preview
+│   └── HeroAnimations.tsx        Framer Motion entrance animations
 └── lib/
-    ├── chapters.ts           # Chapter metadata & navigation
-    └── content.ts            # All chapter teaching content
+    ├── chapters.ts               Chapter metadata and navigation
+    └── content.ts                All teaching content (data-driven)
 ```
-
-## Design Philosophy
-
-- **Teach by doing** — every concept has runnable code examples
-- **Progressive difficulty** — beginner → intermediate → advanced
-- **No fluff** — straight to the point, honest opinions included
-- **Visual learning** — SVG diagrams for architecture, data flow, and rendering strategies
-- **Neo-brutalism** — bold, playful, high-contrast design that makes learning fun
-
-## Deploy
-
-Push to GitHub and import on [Vercel](https://vercel.com) for instant deployment.
 
 ---
 
-Made with 🖤 by Prasen
+## Design
+
+Neo-brutalism aesthetic: thick black borders, offset box shadows, high-contrast colors (yellow, cyan, lime, pink), chunky typography (Space Grotesk + JetBrains Mono). Animations are subtle and scroll-triggered.
+
+The site is content-driven. All chapter text, code examples, callouts, and comparison tables live in `src/lib/content.ts`. Adding or editing a chapter requires no component changes.
+
+---
+
+## Adding Content
+
+To add a new chapter:
+
+1. Add metadata to `src/lib/chapters.ts`
+2. Add content blocks to `src/lib/content.ts`
+3. The dynamic route at `/chapters/[slug]` handles rendering automatically
+
+Content block types: `text`, `code`, `callout`, `heading`, `comparison`, `diagram`
+
+---
+
+## Deployment
+
+**Vercel (recommended):**
+Push to GitHub, import on [vercel.com](https://vercel.com), deploy. Zero config.
+
+**Docker / Self-hosted:**
+Set `output: "standalone"` in `next.config.ts`, build, and run the standalone server.
+
+---
+
+## License
+
+MIT
+
+---
+
+Built by [Prasen](https://github.com/StarKnightt)
