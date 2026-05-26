@@ -12,35 +12,104 @@ export default function Home() {
       {/* Hero */}
       <section className="brutal-border-thin border-t-0 border-x-0 bg-brutal-yellow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="max-w-3xl">
-            <div className="brutal-border bg-white inline-block px-3 py-1 mb-6 brutal-shadow-sm">
-              <span className="font-mono text-sm font-bold">v15 • App Router • 2025</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="brutal-border bg-white inline-block px-3 py-1 mb-6 brutal-shadow-sm">
+                <span className="font-mono text-sm font-bold">v15 • App Router • 2025</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
+                Learn Next.js
+                <br />
+                <span className="bg-foreground text-brutal-yellow px-3 inline-block mt-2">
+                  The Right Way
+                </span>
+              </h1>
+              <p className="text-lg md:text-xl opacity-80 mb-8 max-w-2xl">
+                Hey, I&apos;m <strong>Prasen</strong>. I built this guide while learning Next.js myself.
+                No corporate docs language, just clear explanations, real examples, and the stuff I
+                wish someone told me from day one.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/chapters/getting-started"
+                  className="brutal-border bg-foreground text-brutal-yellow px-6 py-3 font-bold text-lg brutal-shadow brutal-hover inline-block"
+                >
+                  Start Chapter 1 →
+                </Link>
+                <Link
+                  href="/roadmap"
+                  className="brutal-border bg-white px-6 py-3 font-bold text-lg brutal-shadow brutal-hover inline-block"
+                >
+                  View Roadmap
+                </Link>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-              Learn Next.js
-              <br />
-              <span className="bg-foreground text-brutal-yellow px-3 inline-block mt-2">
-                The Right Way
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl opacity-80 mb-8 max-w-2xl">
-              Hey, I&apos;m <strong>Prasen</strong>. I built this guide while learning Next.js myself.
-              No corporate docs language, just clear explanations, real examples, and the stuff I
-              wish someone told me from day one.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/chapters/getting-started"
-                className="brutal-border bg-foreground text-brutal-yellow px-6 py-3 font-bold text-lg brutal-shadow brutal-hover inline-block"
-              >
-                Start Chapter 1 →
-              </Link>
-              <Link
-                href="/roadmap"
-                className="brutal-border bg-white px-6 py-3 font-bold text-lg brutal-shadow brutal-hover inline-block"
-              >
-                View Roadmap
-              </Link>
+
+            {/* Right side: Code preview */}
+            <div className="hidden lg:block">
+              <div className="brutal-border bg-[#1a1a1a] brutal-shadow-lg">
+                <div className="flex items-center gap-2 px-4 py-3 border-b-3 border-[#1a1a1a] bg-[#2a2a2a]">
+                  <span className="w-3 h-3 rounded-full bg-brutal-red" />
+                  <span className="w-3 h-3 rounded-full bg-brutal-yellow" />
+                  <span className="w-3 h-3 rounded-full bg-brutal-lime" />
+                  <span className="ml-3 text-xs text-white/50 font-mono">app/page.tsx</span>
+                </div>
+                <pre className="p-5 text-sm font-mono leading-relaxed overflow-hidden border-0 shadow-none">
+                  <code>
+                    <span className="text-purple-400">export default</span>{" "}
+                    <span className="text-blue-400">async function</span>{" "}
+                    <span className="text-yellow-300">Home</span>
+                    <span className="text-white">() {"{"}</span>{"\n"}
+                    <span className="text-gray-500">  // Fetches on the server</span>{"\n"}
+                    <span className="text-white">  </span>
+                    <span className="text-purple-400">const</span>{" "}
+                    <span className="text-white">posts =</span>{" "}
+                    <span className="text-purple-400">await</span>{" "}
+                    <span className="text-blue-400">fetch</span>
+                    <span className="text-white">(</span>
+                    <span className="text-green-400">&quot;/api/posts&quot;</span>
+                    <span className="text-white">)</span>{"\n"}
+                    <span className="text-white">{"\n"}</span>
+                    <span className="text-white">  </span>
+                    <span className="text-purple-400">return</span>
+                    <span className="text-white"> (</span>{"\n"}
+                    <span className="text-white">    </span>
+                    <span className="text-blue-300">&lt;main&gt;</span>{"\n"}
+                    <span className="text-white">      {"  "}</span>
+                    <span className="text-blue-300">&lt;h1&gt;</span>
+                    <span className="text-white">My Blog</span>
+                    <span className="text-blue-300">&lt;/h1&gt;</span>{"\n"}
+                    <span className="text-white">      {"  "}</span>
+                    <span className="text-gray-500">{"// Zero client JS for this page"}</span>{"\n"}
+                    <span className="text-white">      {"  "}</span>
+                    <span className="text-white">{"{"}</span>
+                    <span className="text-white">posts.</span>
+                    <span className="text-blue-400">map</span>
+                    <span className="text-white">((p) =&gt; </span>
+                    <span className="text-blue-300">&lt;Card</span>{" "}
+                    <span className="text-green-400">key=</span>
+                    <span className="text-white">{"{"}p.id{"}"}</span>{" "}
+                    <span className="text-blue-300">/&gt;</span>
+                    <span className="text-white">)</span>
+                    <span className="text-white">{"}"}</span>{"\n"}
+                    <span className="text-white">    </span>
+                    <span className="text-blue-300">&lt;/main&gt;</span>{"\n"}
+                    <span className="text-white">  )</span>{"\n"}
+                    <span className="text-white">{"}"}</span>
+                  </code>
+                </pre>
+              </div>
+              <div className="mt-4 flex gap-3">
+                <div className="brutal-border-thin bg-white px-3 py-1.5 text-xs font-bold">
+                  Server Component
+                </div>
+                <div className="brutal-border-thin bg-white px-3 py-1.5 text-xs font-bold">
+                  0kb Client JS
+                </div>
+                <div className="brutal-border-thin bg-white px-3 py-1.5 text-xs font-bold">
+                  SEO Ready
+                </div>
+              </div>
             </div>
           </div>
         </div>
