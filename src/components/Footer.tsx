@@ -36,8 +36,18 @@ export function Footer() {
             <h4 className="font-bold mb-3 text-brutal-cyan">Resources</h4>
             <ul className="space-y-2 text-sm opacity-80">
               <li>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-brutal-cyan transition-colors">
+                <a href="https://github.com/StarKnightt" target="_blank" rel="noopener noreferrer" className="hover:text-brutal-cyan transition-colors">
                   GitHub ↗
+                </a>
+              </li>
+              <li>
+                <a href="https://prasen.dev" target="_blank" rel="noopener noreferrer" className="hover:text-brutal-cyan transition-colors">
+                  prasen.dev ↗
+                </a>
+              </li>
+              <li>
+                <a href="https://x.com/Star_Knight12" target="_blank" rel="noopener noreferrer" className="hover:text-brutal-cyan transition-colors">
+                  Twitter/X ↗
                 </a>
               </li>
               <li>
@@ -50,7 +60,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-white/20 text-center text-sm opacity-60">
-          Made with 🖤 by Prasen. Keep building, keep learning.
+          Made with care by <a href="https://prasen.dev" target="_blank" rel="noopener noreferrer" className="underline hover:text-brutal-yellow transition-colors">Prasen</a>. Keep building, keep learning.
         </div>
       </div>
     </footer>

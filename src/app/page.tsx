@@ -27,7 +27,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="text-lg md:text-xl opacity-80 mb-8 max-w-2xl">
-                Hey, I&apos;m <strong>Prasen</strong>. I built this guide while learning Next.js myself.
+                Hey, I&apos;m <strong>Prasenjit</strong>. I built this guide while learning Next.js myself.
                 No corporate docs language, just clear explanations, real examples, and the stuff I
                 wish someone told me from day one.
               </p>
