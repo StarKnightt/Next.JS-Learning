@@ -1,43 +1,71 @@
-# Next.JS
+# ⚡ Next.js Learning — by Prasen
 
-- ## In this repository I'll be sharing all my Next.JS learning.
-![Installation](Picture1.png)
-- Next.JS is a framework for building React Applications.
+A complete, opinionated guide to mastering Next.js — from absolute basics to production-ready patterns. Built as a **neo-brutalism styled website** that teaches through clear explanations, real code examples, and visual diagrams.
 
-- To build make Big Applications Next.js is a suitable choice.
+## What's Inside
 
-- We don't need anymore use of react file routing, it can handle automatically.
+| Level | Topics |
+|-------|--------|
+| **Beginner** | What is Next.js, File Routing, Layouts, Link/Image/Script, Styling |
+| **Intermediate** | Dynamic Routes, Server vs Client Components, Data Fetching, Server Actions, API Routes, Middleware, Loading/Error States |
+| **Advanced** | Authentication (Auth.js v5), Parallel/Intercepting Routes, Streaming, PPR, Deployment |
 
-- It has SEO tools as well as different ways of rendering data.
+## Tech Stack
 
-- It provides API routes, so that we can have back-end and front-end code in the same project.
+- **Next.js 16** (App Router)
+- **React 19** (Server Components, useActionState)
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Neo-Brutalism Design** (bold borders, offset shadows, bright colors)
 
-- We can see additonal features like router from next/navigation
+## Getting Started
 
-- We also see the optimized rendering.
+```bash
+# Install dependencies
+npm install
 
-## Why did Next.js Introduce App Router?
+# Run development server
+npm run dev
 
-- The App Router is a new routing system introduced in Next.js 13. It replaces the previous file-based routing system and introduces several new features and improvements. Here are some of the key reasons why Next.js introduced the App Router.
+# Build for production
+npm run build
+```
 
-- The App Router (in app/) was introduced in Next.js 13+ to improve flexibility, reusability, and performance.
+Open [http://localhost:3000](http://localhost:3000) to see the site.
 
-- It allows for more dynamic routing, nested layouts, and server actions.
+## Project Structure
 
-- It also provides better SEO support and improved developer experience.
+```
+src/
+├── app/
+│   ├── page.tsx              # Homepage with chapter listing
+│   ├── layout.tsx            # Root layout (nav + footer)
+│   ├── roadmap/page.tsx      # Visual learning roadmap with diagrams
+│   └── chapters/[slug]/      # Dynamic chapter pages
+│       └── page.tsx
+├── components/
+│   ├── Navbar.tsx            # Navigation bar
+│   ├── Footer.tsx            # Footer
+│   ├── CodeBlock.tsx         # Syntax-highlighted code blocks
+│   ├── Callout.tsx           # Info/warning/tip callout boxes
+│   └── ChapterCard.tsx       # Chapter listing cards
+└── lib/
+    ├── chapters.ts           # Chapter metadata & navigation
+    └── content.ts            # All chapter teaching content
+```
 
-### Quick Comparison
+## Design Philosophy
 
-| Feature                        | **Pages-Based (`pages/`)** | **App-Based (`app/`)**  |
-| ------------------------------ | -------------------------- | ----------------------- |
-| **Introduced In**               | Before Next.js 13           | Next.js 13+              |
-| **Routing Style**               | File = Route                | Folder + File = Route    |
-| **Dynamic Routes**              | `[param].js`                | `[param]/page.js`        |
-| **Layouts**                     | `_app.js` (global only)     | `layout.js` (nested layouts) |
-| **Data Fetching**               | `getServerSideProps`        | Server components (async) |
-| **Server Components**           | No                          | Yes                      |
-| **Customizable Loading States** | No                          | `loading.js` support     |
-| **SEO Optimizations**           | Manual                      | Automatic with `head.js` |
+- **Teach by doing** — every concept has runnable code examples
+- **Progressive difficulty** — beginner → intermediate → advanced
+- **No fluff** — straight to the point, honest opinions included
+- **Visual learning** — SVG diagrams for architecture, data flow, and rendering strategies
+- **Neo-brutalism** — bold, playful, high-contrast design that makes learning fun
+
+## Deploy
+
+Push to GitHub and import on [Vercel](https://vercel.com) for instant deployment.
 
 ---
 
+Made with 🖤 by Prasen

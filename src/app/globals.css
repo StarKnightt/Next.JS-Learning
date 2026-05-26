@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #FFFDF7;
+  --color-foreground: #1a1a1a;
+  --color-brutal-yellow: #FFE600;
+  --color-brutal-pink: #FF6B9D;
+  --color-brutal-cyan: #00D4FF;
+  --color-brutal-lime: #AAFF00;
+  --color-brutal-orange: #FF8A00;
+  --color-brutal-purple: #B388FF;
+  --color-brutal-red: #FF4444;
+  --color-brutal-border: #1a1a1a;
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-brutal-yellow);
+  color: #1a1a1a;
+}
+
+.brutal-shadow {
+  box-shadow: 4px 4px 0px #1a1a1a;
+}
+
+.brutal-shadow-lg {
+  box-shadow: 6px 6px 0px #1a1a1a;
+}
+
+.brutal-shadow-sm {
+  box-shadow: 2px 2px 0px #1a1a1a;
+}
+
+.brutal-border {
+  border: 3px solid #1a1a1a;
+}
+
+.brutal-border-thin {
+  border: 2px solid #1a1a1a;
+}
+
+.brutal-hover {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.brutal-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1a1a1a;
+}
+
+.brutal-hover:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #1a1a1a;
+}
+
+pre {
+  border: 3px solid #1a1a1a;
+  box-shadow: 4px 4px 0px #1a1a1a;
+  border-radius: 0;
+}
+
+code {
+  font-family: var(--font-mono), monospace;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+  border-left: 3px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brutal-yellow);
+  border: 2px solid #1a1a1a;
+}
