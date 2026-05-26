@@ -83,15 +83,41 @@ export const chapterContents: Record<string, ContentBlock[]> = {
     },
     {
       type: "code",
-      code: `npx create-next-app@latest my-app
-# When prompted, select:
-# ✔ TypeScript? → Yes
-# ✔ ESLint? → Yes
-# ✔ Tailwind CSS? → Yes
-# ✔ src/ directory? → Yes
-# ✔ App Router? → Yes (THIS IS IMPORTANT)
-# ✔ Import alias? → @/* (default is fine)`,
+      code: `npx create-next-app@latest my-app --yes
+cd my-app
+npm run dev
+
+# The --yes flag uses recommended defaults:
+# ✔ TypeScript
+# ✔ ESLint
+# ✔ Tailwind CSS
+# ✔ App Router
+# ✔ Turbopack (default bundler now!)
+# ✔ Import alias @/*`,
       filename: "Terminal",
+      language: "bash",
+    },
+    {
+      type: "text",
+      content: "Or if you want to customize, skip the --yes flag:",
+    },
+    {
+      type: "code",
+      code: `npx create-next-app@latest
+# Prompts:
+# What is your project named? → my-app
+# Would you like to use the recommended defaults?
+#   > Yes, use recommended defaults
+#   > No, customize settings
+#
+# If you customize:
+# TypeScript? → Yes
+# Linter? → ESLint (or Biome)
+# React Compiler? → No (experimental, skip for now)
+# Tailwind CSS? → Yes
+# src/ directory? → Yes
+# App Router? → Yes (ALWAYS yes)`,
+      filename: "Terminal (interactive)",
       language: "bash",
     },
     {
@@ -100,6 +126,18 @@ export const chapterContents: Record<string, ContentBlock[]> = {
       title: "Always choose App Router",
       content:
         "Next.js has two routing systems: Pages Router (old) and App Router (new, default since v13). This entire guide uses the App Router. If some tutorial uses 'pages/' directory or 'getServerSideProps', that's the old way.",
+    },
+    {
+      type: "callout",
+      calloutType: "tip",
+      title: "Turbopack is now the default",
+      content:
+        "Since Next.js 16, Turbopack (Rust-based bundler) is the default for both dev AND build. It's significantly faster than Webpack. If you somehow need Webpack, use 'next dev --webpack'. But honestly, just use Turbopack.",
+    },
+    { type: "heading", content: "System Requirements", level: 3 },
+    {
+      type: "text",
+      content: "Before you start, make sure you have:\n\n• **Node.js 20.9+** (check with 'node -v')\n• **macOS, Windows, or Linux**\n• Any modern browser (Chrome 111+, Firefox 111+, Safari 16.4+)",
     },
     { type: "heading", content: "Project Structure", level: 2 },
     {
@@ -117,9 +155,13 @@ export const chapterContents: Record<string, ContentBlock[]> = {
 │       └── favicon.ico
 ├── public/                 ← Static files (images, fonts)
 ├── next.config.ts          ← Next.js configuration
-├── tailwind.config.ts      ← Tailwind configuration
 ├── tsconfig.json           ← TypeScript configuration
-└── package.json`,
+├── postcss.config.mjs      ← PostCSS (for Tailwind)
+├── eslint.config.mjs       ← ESLint configuration
+└── package.json
+
+# No tailwind.config needed! Tailwind v4 uses
+# @import "tailwindcss" in globals.css directly.`,
       filename: "Project Structure",
       language: "text",
     },
@@ -757,6 +799,13 @@ export default async function ShopPage({
       content:
         "This is THE concept that confuses people coming from React. In Next.js (App Router), components are Server Components by default. They run on the server, never ship JavaScript to the browser, and can directly access databases/file systems.",
     },
+    {
+      type: "callout",
+      calloutType: "info",
+      title: "How it works under the hood (RSC Payload)",
+      content:
+        "When Next.js renders Server Components, it creates something called the RSC Payload. This is a compact binary format that contains the rendered output of your Server Components, placeholders for Client Components, and the props being passed between them. The browser uses this to stitch the full page together.",
+    },
     { type: "heading", content: "Server Components (Default)", level: 2 },
     {
       type: "code",
@@ -867,6 +916,78 @@ export default async function Dashboard() {
       title: "My rule of thumb",
       content:
         "Start everything as a Server Component. Only add 'use client' when you literally can't, like when you need useState, useEffect, onClick, or browser APIs. Push client boundaries as low as possible in your component tree.",
+    },
+    { type: "heading", content: "Context Providers Pattern", level: 2 },
+    {
+      type: "text",
+      content:
+        "React Context doesn't work in Server Components. But you still need things like theme providers. The trick: make the provider a Client Component, import it in your layout (Server Component), and pass children through it:",
+    },
+    {
+      type: "code",
+      code: `// src/providers/theme-provider.tsx
+"use client";
+
+import { createContext } from "react";
+
+export const ThemeContext = createContext({});
+
+export default function ThemeProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <ThemeContext.Provider value="dark">
+      {children}
+    </ThemeContext.Provider>
+  );
+}`,
+      filename: "src/providers/theme-provider.tsx",
+      language: "tsx",
+      highlight: [1],
+    },
+    {
+      type: "code",
+      code: `// src/app/layout.tsx (Server Component!)
+import ThemeProvider from "@/providers/theme-provider";
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}`,
+      filename: "src/app/layout.tsx",
+      language: "tsx",
+      highlight: [8],
+    },
+    {
+      type: "text",
+      content:
+        "Server Components that are passed as children render on the server first, then get slotted into the Client Component. Best of both worlds.",
+    },
+    { type: "heading", content: "Wrapping Third-Party Components", level: 3 },
+    {
+      type: "text",
+      content:
+        "Some npm packages use client-only features but don't have 'use client' in their code. You'll get an error using them in Server Components. The fix is dead simple:",
+    },
+    {
+      type: "code",
+      code: `// src/components/carousel.tsx
+"use client";
+
+// Just re-export with the directive
+import { Carousel } from "acme-carousel";
+export default Carousel;
+
+// Now you can use <Carousel /> in any Server Component`,
+      filename: "src/components/carousel.tsx",
+      language: "tsx",
     },
   ],
 
@@ -989,6 +1110,42 @@ async function SlowStats() {
       title: "Streaming is a superpower",
       content:
         "With Suspense, the page shell renders immediately, then each section pops in as its data arrives. Users see content faster, and slow APIs don't block the entire page. Use this everywhere.",
+    },
+    { type: "heading", content: "The 'use cache' Directive (Next.js 16)", level: 2 },
+    {
+      type: "text",
+      content:
+        "Next.js 16 introduces the 'use cache' directive. Instead of configuring caching per-fetch, you can mark entire functions or components as cacheable:",
+    },
+    {
+      type: "code",
+      code: `// Cache an entire async function
+async function getProducts() {
+  "use cache";
+  const res = await fetch("https://api.example.com/products");
+  return res.json();
+}
+
+// Cache a component
+async function ProductList() {
+  "use cache";
+  const products = await getProducts();
+  return (
+    <ul>
+      {products.map((p) => <li key={p.id}>{p.name}</li>)}
+    </ul>
+  );
+}`,
+      filename: "use cache example",
+      language: "tsx",
+      highlight: [3, 10],
+    },
+    {
+      type: "callout",
+      calloutType: "tip",
+      title: "use cache vs fetch options",
+      content:
+        "The 'use cache' directive caches the entire function result, not just individual fetch calls. It's simpler and more powerful. You can pair it with cacheLife() and cacheTag() for fine-grained control over expiration and on-demand revalidation.",
     },
   ],
 

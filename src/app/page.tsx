@@ -17,7 +17,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <HeroAnimations>
               <div className="brutal-border bg-white inline-block px-3 py-1 mb-6 brutal-shadow-sm">
-                <span className="font-mono text-sm font-bold">v15 • App Router • 2025</span>
+                <span className="font-mono text-sm font-bold">v16 • App Router • Turbopack</span>
               </div>
               <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
                 Learn Next.js
