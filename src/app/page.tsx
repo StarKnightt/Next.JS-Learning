@@ -1,5 +1,7 @@
 import { ChapterCard } from "@/components/ChapterCard";
 import { chapters } from "@/lib/chapters";
+import { TypingCode } from "@/components/TypingCode";
+import { HeroAnimations, FadeInUp, StaggerContainer, StaggerItem } from "@/components/HeroAnimations";
 import Link from "next/link";
 
 export default function Home() {
@@ -13,7 +15,7 @@ export default function Home() {
       <section className="brutal-border-thin border-t-0 border-x-0 bg-brutal-yellow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <HeroAnimations>
               <div className="brutal-border bg-white inline-block px-3 py-1 mb-6 brutal-shadow-sm">
                 <span className="font-mono text-sm font-bold">v15 • App Router • 2025</span>
               </div>
@@ -43,62 +45,11 @@ export default function Home() {
                   View Roadmap
                 </Link>
               </div>
-            </div>
+            </HeroAnimations>
 
             {/* Right side: Code preview */}
             <div className="hidden lg:block">
-              <div className="brutal-border bg-[#1a1a1a] brutal-shadow-lg">
-                <div className="flex items-center gap-2 px-4 py-3 border-b-3 border-[#1a1a1a] bg-[#2a2a2a]">
-                  <span className="w-3 h-3 rounded-full bg-brutal-red" />
-                  <span className="w-3 h-3 rounded-full bg-brutal-yellow" />
-                  <span className="w-3 h-3 rounded-full bg-brutal-lime" />
-                  <span className="ml-3 text-xs text-white/50 font-mono">app/page.tsx</span>
-                </div>
-                <pre className="p-5 text-sm font-mono leading-relaxed overflow-hidden border-0 shadow-none">
-                  <code>
-                    <span className="text-purple-400">export default</span>{" "}
-                    <span className="text-blue-400">async function</span>{" "}
-                    <span className="text-yellow-300">Home</span>
-                    <span className="text-white">() {"{"}</span>{"\n"}
-                    <span className="text-gray-500">  // Fetches on the server</span>{"\n"}
-                    <span className="text-white">  </span>
-                    <span className="text-purple-400">const</span>{" "}
-                    <span className="text-white">posts =</span>{" "}
-                    <span className="text-purple-400">await</span>{" "}
-                    <span className="text-blue-400">fetch</span>
-                    <span className="text-white">(</span>
-                    <span className="text-green-400">&quot;/api/posts&quot;</span>
-                    <span className="text-white">)</span>{"\n"}
-                    <span className="text-white">{"\n"}</span>
-                    <span className="text-white">  </span>
-                    <span className="text-purple-400">return</span>
-                    <span className="text-white"> (</span>{"\n"}
-                    <span className="text-white">    </span>
-                    <span className="text-blue-300">&lt;main&gt;</span>{"\n"}
-                    <span className="text-white">      {"  "}</span>
-                    <span className="text-blue-300">&lt;h1&gt;</span>
-                    <span className="text-white">My Blog</span>
-                    <span className="text-blue-300">&lt;/h1&gt;</span>{"\n"}
-                    <span className="text-white">      {"  "}</span>
-                    <span className="text-gray-500">{"// Zero client JS for this page"}</span>{"\n"}
-                    <span className="text-white">      {"  "}</span>
-                    <span className="text-white">{"{"}</span>
-                    <span className="text-white">posts.</span>
-                    <span className="text-blue-400">map</span>
-                    <span className="text-white">((p) =&gt; </span>
-                    <span className="text-blue-300">&lt;Card</span>{" "}
-                    <span className="text-green-400">key=</span>
-                    <span className="text-white">{"{"}p.id{"}"}</span>{" "}
-                    <span className="text-blue-300">/&gt;</span>
-                    <span className="text-white">)</span>
-                    <span className="text-white">{"}"}</span>{"\n"}
-                    <span className="text-white">    </span>
-                    <span className="text-blue-300">&lt;/main&gt;</span>{"\n"}
-                    <span className="text-white">  )</span>{"\n"}
-                    <span className="text-white">{"}"}</span>
-                  </code>
-                </pre>
-              </div>
+              <TypingCode />
               <div className="mt-4 flex gap-3">
                 <div className="brutal-border-thin bg-white px-3 py-1.5 text-xs font-bold">
                   Server Component
@@ -117,13 +68,14 @@ export default function Home() {
 
       {/* What you'll learn */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <StatCard number="15" label="Chapters" color="bg-brutal-cyan/30" />
-          <StatCard number="50+" label="Code Examples" color="bg-brutal-lime/30" />
-          <StatCard number="3" label="Skill Levels" color="bg-brutal-pink/30" />
-        </div>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <StaggerItem><StatCard number="15" label="Chapters" color="bg-brutal-cyan/30" /></StaggerItem>
+          <StaggerItem><StatCard number="50+" label="Code Examples" color="bg-brutal-lime/30" /></StaggerItem>
+          <StaggerItem><StatCard number="3" label="Skill Levels" color="bg-brutal-pink/30" /></StaggerItem>
+        </StaggerContainer>
 
         {/* Architecture Overview */}
+        <FadeInUp>
         <div className="brutal-border bg-white p-8 brutal-shadow-lg mb-16">
           <h2 className="text-2xl font-bold mb-6">How Next.js Works - The Big Picture</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -149,42 +101,49 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </FadeInUp>
 
         {/* Beginner */}
+        <FadeInUp>
         <SectionHeader
           title="Beginner"
           subtitle="Start here. No prior Next.js knowledge needed."
           color="bg-brutal-lime"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        </FadeInUp>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {beginnerChapters.map((chapter) => (
-            <ChapterCard key={chapter.slug} {...chapter} />
+            <StaggerItem key={chapter.slug}><ChapterCard {...chapter} /></StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Intermediate */}
+        <FadeInUp>
         <SectionHeader
           title="Intermediate"
           subtitle="You know the basics. Time to build real things."
           color="bg-brutal-orange"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        </FadeInUp>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {intermediateChapters.map((chapter) => (
-            <ChapterCard key={chapter.slug} {...chapter} />
+            <StaggerItem key={chapter.slug}><ChapterCard {...chapter} /></StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Advanced */}
+        <FadeInUp>
         <SectionHeader
           title="Advanced"
           subtitle="Production patterns, auth, and deployment."
           color="bg-brutal-pink"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        </FadeInUp>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {advancedChapters.map((chapter) => (
-            <ChapterCard key={chapter.slug} {...chapter} />
+            <StaggerItem key={chapter.slug}><ChapterCard {...chapter} /></StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
     </div>
   );
