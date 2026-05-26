@@ -119,7 +119,12 @@ function ContentRenderer({ block }: { block: (typeof chapterContents)[string][nu
     case "callout":
       return (
         <Callout type={block.calloutType!} title={block.title}>
-          <p>{block.content}</p>
+          <div
+            className="space-y-1"
+            dangerouslySetInnerHTML={{
+              __html: formatText(block.content!).replace(/\n/g, "<br/>"),
+            }}
+          />
         </Callout>
       );
 

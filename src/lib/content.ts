@@ -275,7 +275,7 @@ export default function AboutPage() {
       calloutType: "tip",
       title: "Pro tip",
       content:
-        "You DON'T need to create all these files. Start with just page.tsx. Add layout.tsx when you need shared UI, loading.tsx when you need loading states, etc. Keep it simple.",
+        "You DON'T need to create all these files.\n• Start with just page.tsx\n• Add layout.tsx when you need shared UI\n• Add loading.tsx when you need loading states\n• Keep it simple, add files as needed",
     },
   ],
 
@@ -388,7 +388,7 @@ export default function AdminLayout({
       calloutType: "tip",
       title: "When I use route groups",
       content:
-        "I use them when different sections of my app need different layouts but I don't want the group name in the URL. Marketing pages get a landing-page layout. Dashboard pages get an app layout. Same URL structure, different wrapping UI.",
+        "I use them when different sections of my app need different layouts but I don't want the group name in the URL.\n• Marketing pages get a landing-page layout\n• Dashboard pages get an app layout\n• Same URL structure, different wrapping UI",
     },
     { type: "heading", content: "Metadata & SEO", level: 2 },
     {
@@ -467,7 +467,7 @@ export default function Navbar() {
       calloutType: "info",
       title: "Why Link over <a>?",
       content:
-        "Link does client-side navigation (instant, no page reload). It prefetches linked pages in the viewport. It preserves client state. Using <a> causes a full server round-trip, which is slow and destroys state.",
+        "Link does client-side navigation (instant, no full page reload).\n• Prefetches linked pages in the viewport\n• Preserves client state across navigations\n• Using <a> causes a full server round-trip, which is slow and destroys state",
     },
     { type: "heading", content: "Image: Optimized Images", level: 2 },
     {
@@ -788,7 +788,7 @@ export default async function ShopPage({
       calloutType: "tip",
       title: "Pattern I use often",
       content:
-        "I group my routes by layout: (marketing) for landing pages with a simple header, (app) for the authenticated dashboard with a sidebar, and (auth) for login/register with a centered card layout. Clean separation, clean URLs.",
+        "I group my routes by layout:\n• (marketing) for landing pages with a simple header\n• (app) for the authenticated dashboard with a sidebar\n• (auth) for login/register with a centered card layout\nClean separation, clean URLs.",
     },
   ],
 
@@ -804,7 +804,7 @@ export default async function ShopPage({
       calloutType: "info",
       title: "How it works under the hood (RSC Payload)",
       content:
-        "When Next.js renders Server Components, it creates something called the RSC Payload. This is a compact binary format that contains the rendered output of your Server Components, placeholders for Client Components, and the props being passed between them. The browser uses this to stitch the full page together.",
+        "When Next.js renders Server Components, it creates the RSC Payload:\n• A compact binary format of rendered Server Components\n• Contains placeholders for where Client Components go\n• Includes props being passed between server and client\nThe browser uses this to stitch the full page together.",
     },
     { type: "heading", content: "Server Components (Default)", level: 2 },
     {
@@ -915,7 +915,7 @@ export default async function Dashboard() {
       calloutType: "tip",
       title: "My rule of thumb",
       content:
-        "Start everything as a Server Component. Only add 'use client' when you literally can't, like when you need useState, useEffect, onClick, or browser APIs. Push client boundaries as low as possible in your component tree.",
+        "Start everything as a Server Component. Only add 'use client' when you literally can't:\n• You need useState or useEffect\n• You need onClick, onChange, or other event handlers\n• You need browser APIs (localStorage, window)\n• You need custom hooks\nPush client boundaries as low as possible in your component tree.",
     },
     { type: "heading", content: "Context Providers Pattern", level: 2 },
     {
@@ -1109,7 +1109,7 @@ async function SlowStats() {
       calloutType: "tip",
       title: "Streaming is a superpower",
       content:
-        "With Suspense, the page shell renders immediately, then each section pops in as its data arrives. Users see content faster, and slow APIs don't block the entire page. Use this everywhere.",
+        "With Suspense, the page shell renders immediately, then each section pops in as its data arrives.\n• Users see content faster\n• Slow APIs don't block the entire page\n• Each section loads independently\nUse this everywhere.",
     },
     { type: "heading", content: "The 'use cache' Directive (Next.js 16)", level: 2 },
     {
@@ -1145,7 +1145,7 @@ async function ProductList() {
       calloutType: "tip",
       title: "use cache vs fetch options",
       content:
-        "The 'use cache' directive caches the entire function result, not just individual fetch calls. It's simpler and more powerful. You can pair it with cacheLife() and cacheTag() for fine-grained control over expiration and on-demand revalidation.",
+        "The 'use cache' directive caches the entire function result, not just individual fetch calls.\n• Simpler than per-fetch config\n• Pair with cacheLife() for expiration control\n• Pair with cacheTag() for on-demand revalidation",
     },
   ],
 
@@ -1268,7 +1268,7 @@ export default function ContactForm() {
       calloutType: "tip",
       title: "useActionState is the new way",
       content:
-        "React 19 introduced useActionState (replacing useFormState). It gives you the previous state, the action to pass to form, and isPending boolean. Use it for any form that needs loading states or server validation.",
+        "React 19 introduced useActionState (replacing useFormState). It gives you:\n• The previous state\n• The action function to pass to your form\n• An isPending boolean for loading states\nUse it for any form that needs loading states or server validation.",
     },
   ],
 
@@ -1350,7 +1350,7 @@ export async function DELETE(
       calloutType: "warning",
       title: "Don't overuse API routes",
       content:
-        "If you're just fetching data for your own pages, use Server Components directly. If you're mutating data from forms, use Server Actions. API routes are best for: webhooks, third-party integrations, and when you need a public REST API.",
+        "If you're just fetching data for your own pages, use Server Components directly. If you're mutating data from forms, use Server Actions. API routes are best for:\n• Webhooks\n• Third-party integrations\n• When you need a public REST API",
     },
     { type: "heading", content: "Reading Headers, Cookies & Query Params", level: 2 },
     {
@@ -1467,7 +1467,7 @@ export const config = {
       calloutType: "tip",
       title: "Keep middleware lean",
       content:
-        "Middleware runs on EVERY matched request. Keep it fast. Don't do database queries or heavy computation here. Use it for quick checks: is there a cookie? redirect? rewrite? That's it. Heavy auth logic belongs in your route/page.",
+        "Middleware runs on EVERY matched request. Keep it fast.\n• Don't do database queries here\n• Don't do heavy computation\n• Use it for quick checks: is there a cookie? redirect? rewrite?\n• Heavy auth logic belongs in your route/page",
     },
   ],
 
@@ -1866,7 +1866,7 @@ git push origin main
       calloutType: "info",
       title: "What Vercel gives you",
       content:
-        "Automatic HTTPS, global CDN, serverless functions, edge middleware, preview deployments for every PR, analytics, and zero-config. The free tier is generous for personal projects.",
+        "Automatic HTTPS, global CDN, serverless functions, edge middleware:\n• Preview deployments for every PR\n• Built-in analytics\n• Zero-config setup\n• Free tier is generous for personal projects",
     },
     { type: "heading", content: "Self-Hosting with Docker", level: 2 },
     {
@@ -1943,7 +1943,7 @@ export default function AnalyticsPage() {
       calloutType: "tip",
       title: "My production checklist",
       content:
-        "Before deploying: 1) Run 'npm run build' locally to catch errors. 2) Check bundle size with @next/bundle-analyzer. 3) Test with Lighthouse. 4) Ensure all images use next/image. 5) Set up error monitoring (Sentry). 6) Add proper metadata for SEO.",
+        "Before deploying:\n1) Run 'npm run build' locally to catch errors\n2) Check bundle size with @next/bundle-analyzer\n3) Test with Lighthouse\n4) Ensure all images use next/image\n5) Set up error monitoring (Sentry)\n6) Add proper metadata for SEO",
     },
   ],
 };
