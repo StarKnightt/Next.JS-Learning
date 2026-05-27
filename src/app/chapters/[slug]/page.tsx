@@ -5,6 +5,8 @@ import { chapterContents } from "@/lib/content";
 import { CodeBlock } from "@/components/CodeBlock";
 import { Callout } from "@/components/Callout";
 import { VideoGrid } from "@/components/VideoGrid";
+import { ShareHeading } from "@/components/ShareHeading";
+import { slugify } from "@/lib/search-index";
 import type { Metadata } from "next";
 
 interface PageProps {
@@ -92,11 +94,21 @@ export default async function ChapterPage({ params }: PageProps) {
 
 function ContentRenderer({ block }: { block: (typeof chapterContents)[string][number] }) {
   switch (block.type) {
-    case "heading":
+    case "heading": {
+      const headingId = slugify(block.content || "");
       if (block.level === 2) {
-        return <h2 className="text-2xl md:text-3xl font-bold mt-10 mb-4 border-b-4 border-brutal-yellow pb-2">{block.content}</h2>;
+        return (
+          <ShareHeading id={headingId} level={2}>
+            {block.content}
+          </ShareHeading>
+        );
       }
-      return <h3 className="text-xl md:text-2xl font-bold mt-8 mb-3">{block.content}</h3>;
+      return (
+        <ShareHeading id={headingId} level={3}>
+          {block.content}
+        </ShareHeading>
+      );
+    }
 
     case "text":
       return (
