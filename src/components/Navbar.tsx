@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import { SearchModal } from "./SearchModal";
-import { DarkModeToggle } from "./DarkModeToggle";
 
 const REPO = "StarKnightt/Next.JS-Learning";
 
@@ -76,14 +75,12 @@ export function Navbar() {
                   <span>Star</span>
                 )}
               </a>
-              <DarkModeToggle />
             </div>
 
             <div className="flex items-center gap-2 md:hidden">
-              <DarkModeToggle />
               <button
                 onClick={openSearch}
-                className="brutal-border-thin bg-white dark:bg-gray-800 w-10 h-10 flex items-center justify-center"
+                className="brutal-border-thin bg-white w-10 h-10 flex items-center justify-center"
                 aria-label="Search"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
