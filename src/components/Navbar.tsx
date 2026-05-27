@@ -51,12 +51,12 @@ export function Navbar() {
               <NavLink href="/roadmap">Roadmap</NavLink>
               <button
                 onClick={openSearch}
-                className="flex items-center gap-2 ml-2 px-3 py-1.5 text-sm font-semibold bg-white border-2 border-foreground hover:bg-foreground hover:text-white transition-colors"
+                className="flex items-center gap-2 ml-2 px-3 py-1.5 text-sm font-semibold bg-white border-2 border-foreground hover:bg-foreground hover:text-white transition-colors group"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                <kbd className="text-[10px] font-mono bg-gray-100 border border-gray-300 px-1 py-0.5 rounded">
+                <kbd className="text-[10px] font-mono bg-gray-200 group-hover:bg-white/20 group-hover:text-white border border-gray-300 group-hover:border-white/30 px-1 py-0.5 rounded transition-colors">
                   Ctrl K
                 </kbd>
               </button>
