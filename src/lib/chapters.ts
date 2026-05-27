@@ -123,10 +123,26 @@ export const chapters: Chapter[] = [
   {
     slug: "deployment",
     number: 15,
-    title: "Deployment & Optimization",
+    title: "Deployment & Production",
     description: "Deploy to Vercel, self-host, bundle analysis, performance tips, and production checklist.",
     level: "advanced",
     color: "bg-brutal-yellow/40",
+  },
+  {
+    slug: "metadata-seo",
+    number: 16,
+    title: "Metadata & SEO",
+    description: "Page titles, Open Graph images, structured data, sitemaps, and robots.txt for discoverability.",
+    level: "advanced",
+    color: "bg-brutal-lime/40",
+  },
+  {
+    slug: "performance",
+    number: 17,
+    title: "Performance & Optimization",
+    description: "Bundle splitting, image optimization, font loading, Core Web Vitals, and Lighthouse scores.",
+    level: "advanced",
+    color: "bg-brutal-purple/40",
   },
 ];
 

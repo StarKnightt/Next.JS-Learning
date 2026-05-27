@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { chapters } from "@/lib/chapters";
+import { DiagramPreview } from "@/components/DiagramPreview";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -47,7 +48,9 @@ export default function RoadmapPage() {
         <h2 className="text-3xl font-bold mb-8 border-b-4 border-brutal-yellow pb-2">
           Next.js Rendering - At a Glance
         </h2>
-        <RenderingDiagram />
+        <DiagramPreview title="Next.js Rendering Strategies">
+          <RenderingDiagram />
+        </DiagramPreview>
       </div>
 
       {/* Data Flow Diagram */}
@@ -55,7 +58,9 @@ export default function RoadmapPage() {
         <h2 className="text-3xl font-bold mb-8 border-b-4 border-brutal-cyan pb-2">
           How Data Flows in Next.js
         </h2>
-        <DataFlowDiagram />
+        <DiagramPreview title="Data Flow in Next.js">
+          <DataFlowDiagram />
+        </DiagramPreview>
       </div>
     </div>
   );

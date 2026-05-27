@@ -69,7 +69,7 @@ export default function Home() {
       {/* What you'll learn */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <StaggerItem><StatCard number="15" label="Chapters" color="bg-brutal-cyan/30" /></StaggerItem>
+          <StaggerItem><StatCard number="17" label="Chapters" color="bg-brutal-cyan/30" /></StaggerItem>
           <StaggerItem><StatCard number="50+" label="Code Examples" color="bg-brutal-lime/30" /></StaggerItem>
           <StaggerItem><StatCard number="3" label="Skill Levels" color="bg-brutal-pink/30" /></StaggerItem>
         </StaggerContainer>

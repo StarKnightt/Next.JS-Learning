@@ -1,0 +1,71 @@
+# Next.js Learning by Prasen
+
+> A comprehensive guide to mastering Next.js (v16), from absolute basics to production-ready patterns. 17 chapters covering the App Router, Server Components, data fetching, authentication, and deployment.
+
+## About
+
+This is a free, open-source educational resource for learning Next.js. Built by Prasen (https://prasen.dev, https://github.com/StarKnightt). The site uses neo-brutalism design and teaches through practical examples, code snippets, comparison tables, and curated YouTube videos.
+
+## Curriculum
+
+- Chapter 1: What is Next.js & Getting Started (beginner)
+- Chapter 2: File-Based Routing with App Router (beginner)
+- Chapter 3: Layouts, Templates & Metadata (beginner)
+- Chapter 4: Link, Image & Script Components (beginner)
+- Chapter 5: Styling in Next.js (beginner)
+- Chapter 6: Dynamic Routes & Route Groups (intermediate)
+- Chapter 7: Server vs Client Components (intermediate)
+- Chapter 8: Data Fetching & Caching (intermediate)
+- Chapter 9: Server Actions & Forms (intermediate)
+- Chapter 10: API Routes / Route Handlers (intermediate)
+- Chapter 11: Middleware (intermediate)
+- Chapter 12: Loading & Error Handling (intermediate)
+- Chapter 13: Authentication with Auth.js (advanced)
+- Chapter 14: Advanced Patterns - PPR, Parallel Routes (advanced)
+- Chapter 15: Deployment & Production (advanced)
+- Chapter 16: Metadata & SEO (advanced)
+- Chapter 17: Performance & Optimization (advanced)
+
+## Key Topics Covered
+
+- Next.js 16 App Router architecture
+- React Server Components vs Client Components
+- File-based routing, dynamic routes, catch-all segments
+- Data fetching patterns (SSG, SSR, ISR, Streaming)
+- Server Actions for mutations
+- Route Handlers (API routes)
+- Middleware for auth, redirects, rewrites
+- Authentication with Auth.js v5
+- Partial Prerendering (PPR)
+- Image, font, and bundle optimization
+- Deployment to Vercel and self-hosting
+
+## Tech Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Framer Motion
+
+## Author
+
+Prasen (Prasenjit)
+- Website: https://prasen.dev
+- GitHub: https://github.com/StarKnightt
+- Twitter/X: https://x.com/Star_Knight12
+
+## Other Projects by Prasen
+
+- dateup.in - AI Dating profile enhancer
+- wallpaperz.in - Wallpapers with AI image generation
+- cleantype.software - Notes taking app
+- buddy-find.vercel.app - Find your GitHub buddy
+
+## Source Code
+
+https://github.com/StarKnightt/Next.JS-Learning
+
+## License
+
+MIT

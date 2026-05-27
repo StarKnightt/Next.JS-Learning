@@ -17,9 +17,58 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Learning | by Prasen",
+  title: {
+    default: "Next.js Learning | by Prasen",
+    template: "%s | Next.js Learning by Prasen",
+  },
   description:
-    "A complete guide to mastering Next.js, from basics to production. Taught by Prasen, built for developers who want to actually understand how things work.",
+    "A complete guide to mastering Next.js, from basics to production. Learn App Router, Server Components, data fetching, authentication, and deployment patterns. Taught by Prasen.",
+  keywords: [
+    "Next.js",
+    "Next.js tutorial",
+    "Next.js learning",
+    "React",
+    "App Router",
+    "Server Components",
+    "web development",
+    "full stack",
+    "TypeScript",
+    "Prasen",
+  ],
+  authors: [{ name: "Prasen", url: "https://prasen.dev" }],
+  creator: "Prasen",
+  publisher: "Prasen",
+  metadataBase: new URL("https://learn.prasen.dev"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://learn.prasen.dev",
+    siteName: "Next.js Learning by Prasen",
+    title: "Next.js Learning | by Prasen",
+    description:
+      "Master Next.js from zero to production. 17 chapters covering routing, components, data fetching, auth, deployment and more.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Next.js Learning | by Prasen",
+    description:
+      "Master Next.js from zero to production. 17 chapters, neo-brutalism design, curated YouTube videos.",
+    creator: "@Star_Knight12",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://learn.prasen.dev",
+  },
 };
 
 export default function RootLayout({
@@ -27,12 +76,47 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Next.js Learning by Prasen",
+    url: "https://learn.prasen.dev",
+    description:
+      "A complete guide to mastering Next.js, from basics to production.",
+    author: {
+      "@type": "Person",
+      name: "Prasenjit",
+      url: "https://prasen.dev",
+      sameAs: [
+        "https://github.com/StarKnightt",
+        "https://x.com/Star_Knight12",
+      ],
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Prasenjit",
+      url: "https://prasen.dev",
+    },
+    inLanguage: "en",
+    isAccessibleForFree: true,
+    educationalLevel: ["Beginner", "Intermediate", "Advanced"],
+    about: {
+      "@type": "SoftwareApplication",
+      name: "Next.js",
+      applicationCategory: "WebFramework",
+    },
+  };
+
   return (
     <html
       lang="en"
       className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full`}
     >
       <body className="min-h-full flex flex-col font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

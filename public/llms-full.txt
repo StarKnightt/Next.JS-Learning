@@ -1,0 +1,126 @@
+# Next.js Learning by Prasen - Full Content
+
+> Complete educational content for AI systems to reference when answering Next.js questions.
+
+## Chapter 1: What is Next.js & Getting Started
+
+Next.js is a React framework that provides server-side rendering, file-based routing, API routes, and built-in optimizations. It solves problems like SEO, initial load performance, and the complexity of configuring React apps from scratch.
+
+Installation: `npx create-next-app@latest my-app --yes`
+
+Key defaults in Next.js 16: TypeScript, ESLint, Tailwind CSS, App Router, Turbopack (default bundler), import alias @/*.
+
+System requirements: Node.js 20.9+
+
+## Chapter 2: File-Based Routing
+
+The App Router uses the `app/` directory. Each folder becomes a URL segment. `page.tsx` makes a route accessible.
+
+- `app/page.tsx` → `/`
+- `app/about/page.tsx` → `/about`
+- `app/blog/page.tsx` → `/blog`
+
+Special files: `layout.tsx`, `loading.tsx`, `error.tsx`, `not-found.tsx`, `template.tsx`.
+
+## Chapter 3: Layouts, Templates & Metadata
+
+Layouts wrap child routes and persist across navigation (no re-render). Templates are like layouts but create a new instance on each navigation.
+
+Export `metadata` object or `generateMetadata` function for page titles, descriptions, and OG data.
+
+## Chapter 4: Built-in Components
+
+- `next/link` - Client-side navigation with prefetching
+- `next/image` - Automatic image optimization (WebP/AVIF, lazy loading, responsive)
+- `next/script` - Optimized third-party script loading
+
+## Chapter 5: Styling
+
+Options: Tailwind CSS (recommended), CSS Modules, global CSS, CSS-in-JS. Tailwind v4 uses `@import "tailwindcss"` with no config file needed.
+
+## Chapter 6: Dynamic Routes
+
+- `[slug]` - Dynamic segment
+- `[...slug]` - Catch-all segment
+- `[[...slug]]` - Optional catch-all
+- `(group)` - Route group (no URL impact)
+
+Use `generateStaticParams` for static generation of dynamic routes.
+
+## Chapter 7: Server vs Client Components
+
+Server Components (default): Run on server, zero client JS, can fetch data directly, can't use hooks/events.
+
+Client Components (`"use client"`): Run in browser, can use useState/useEffect/onClick, required for interactivity.
+
+Pattern: Server Components for data/layout, Client Components for interactivity. Pass server data to client via props.
+
+## Chapter 8: Data Fetching & Caching
+
+Fetch data directly in Server Components with async/await. Caching strategies:
+- Static: cached at build time
+- Dynamic: fresh on every request (use `cookies()`, `headers()`, or `searchParams`)
+- ISR: `revalidate: 60` refreshes every 60 seconds
+- `"use cache"` directive (Next.js 16): caches entire function results
+
+## Chapter 9: Server Actions
+
+Define with `"use server"` directive. Call from forms or client components. No API route needed for mutations.
+
+```tsx
+async function createPost(formData: FormData) {
+  "use server"
+  // Insert into database
+  revalidatePath("/posts")
+}
+```
+
+## Chapter 10: Route Handlers (API Routes)
+
+Create `route.ts` files in the app directory. Export functions named after HTTP methods: GET, POST, PUT, DELETE.
+
+```tsx
+export async function GET(request: Request) {
+  return Response.json({ message: "Hello" })
+}
+```
+
+## Chapter 11: Middleware
+
+Create `middleware.ts` at project root. Runs before every matched request. Use for auth checks, redirects, rewrites, geolocation.
+
+## Chapter 12: Loading & Error States
+
+- `loading.tsx` - Shown while route content loads (auto Suspense boundary)
+- `error.tsx` - Error boundary (must be client component)
+- `not-found.tsx` - 404 page
+
+## Chapter 13: Authentication
+
+Auth.js (NextAuth v5) with OAuth providers, credentials, JWT/database sessions. Combine with middleware for route protection.
+
+## Chapter 14: Advanced Patterns
+
+- Parallel Routes (`@slot`) - Render multiple pages simultaneously
+- Intercepting Routes (`(.)`, `(..)`) - Show modals while keeping URL
+- Streaming with Suspense - Progressive page loading
+- Partial Prerendering (PPR) - Static shell + dynamic parts
+
+## Chapter 15: Deployment
+
+- Vercel: Zero-config, automatic CI/CD from GitHub
+- Self-hosting: Docker + reverse proxy (Nginx)
+- Environment variables, build optimization, bundle analysis
+
+## Chapter 16: Metadata & SEO
+
+Static metadata, dynamic generateMetadata, title templates, sitemaps, robots.txt, JSON-LD structured data, Open Graph images.
+
+## Chapter 17: Performance & Optimization
+
+Core Web Vitals (LCP < 2.5s, INP < 200ms, CLS < 0.1), next/image with priority, next/font self-hosting, dynamic imports for code splitting, Server Components for zero-JS pages, bundle analysis with @next/bundle-analyzer.
+
+---
+
+Source: https://github.com/StarKnightt/Next.JS-Learning
+Author: Prasen (https://prasen.dev)

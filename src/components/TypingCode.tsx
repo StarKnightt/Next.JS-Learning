@@ -67,14 +67,26 @@ const lines = [
 export function TypingCode() {
   const [visibleLines, setVisibleLines] = useState(0);
   const [charCount, setCharCount] = useState(0);
-  const [done, setDone] = useState(false);
+  const [phase, setPhase] = useState<"typing" | "pausing" | "resetting">("typing");
 
   useEffect(() => {
-    if (done) return;
+    if (phase === "pausing") {
+      const pause = setTimeout(() => {
+        setPhase("resetting");
+      }, 2000);
+      return () => clearTimeout(pause);
+    }
+
+    if (phase === "resetting") {
+      setVisibleLines(0);
+      setCharCount(0);
+      setPhase("typing");
+      return;
+    }
 
     const timer = setTimeout(() => {
       if (visibleLines >= lines.length) {
-        setDone(true);
+        setPhase("pausing");
         return;
       }
 
@@ -88,7 +100,7 @@ export function TypingCode() {
     }, charCount === 0 && visibleLines > 0 ? 80 : 25);
 
     return () => clearTimeout(timer);
-  }, [visibleLines, charCount, done]);
+  }, [visibleLines, charCount, phase]);
 
   return (
     <div className="brutal-border bg-[#1a1a1a] brutal-shadow-lg">
@@ -111,7 +123,7 @@ export function TypingCode() {
             </span>
           </div>
         ))}
-        {!done && visibleLines < lines.length && (
+        {phase === "typing" && visibleLines < lines.length && (
           <div className="flex">
             <span className="w-6 text-right mr-3 text-white/20 text-xs select-none shrink-0 pt-[2px]">
               {visibleLines + 1}

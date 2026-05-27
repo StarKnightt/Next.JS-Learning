@@ -4,6 +4,7 @@ import { chapters, getChapter, getAdjacentChapters } from "@/lib/chapters";
 import { chapterContents } from "@/lib/content";
 import { CodeBlock } from "@/components/CodeBlock";
 import { Callout } from "@/components/Callout";
+import { VideoGrid } from "@/components/VideoGrid";
 import type { Metadata } from "next";
 
 interface PageProps {
@@ -130,24 +131,29 @@ function ContentRenderer({ block }: { block: (typeof chapterContents)[string][nu
 
     case "comparison":
       return (
-        <div className="brutal-border bg-white overflow-hidden my-6">
-          <div className="grid grid-cols-3 bg-foreground text-background p-3 font-bold text-sm">
-            <span>Feature</span>
-            <span>What it does</span>
-            <span>When to use</span>
-          </div>
-          {block.items!.map((item, i) => (
-            <div
-              key={i}
-              className={`grid grid-cols-3 p-3 text-sm ${i % 2 === 0 ? "bg-white" : "bg-gray-50"} border-t-2 border-foreground`}
-            >
-              <span className="font-bold font-mono">{item.label}</span>
-              <span>{item.left}</span>
-              <span className="opacity-75">{item.right}</span>
+        <div className="brutal-border bg-white overflow-hidden my-6 overflow-x-auto">
+          <div className="min-w-[500px]">
+            <div className="grid grid-cols-3 bg-foreground text-background p-3 font-bold text-sm">
+              <span>Feature</span>
+              <span>What it does</span>
+              <span>When to use</span>
             </div>
-          ))}
+            {block.items!.map((item, i) => (
+              <div
+                key={i}
+                className={`grid grid-cols-3 p-3 text-sm ${i % 2 === 0 ? "bg-white" : "bg-gray-50"} border-t-2 border-foreground`}
+              >
+                <span className="font-bold font-mono">{item.label}</span>
+                <span>{item.left}</span>
+                <span className="opacity-75">{item.right}</span>
+              </div>
+            ))}
+          </div>
         </div>
       );
+
+    case "video":
+      return <VideoGrid videos={block.videos!} title={block.title!} />;
 
     default:
       return null;
