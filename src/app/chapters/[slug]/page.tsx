@@ -6,6 +6,8 @@ import { CodeBlock } from "@/components/CodeBlock";
 import { Callout } from "@/components/Callout";
 import { VideoGrid } from "@/components/VideoGrid";
 import { ShareHeading } from "@/components/ShareHeading";
+import { MarkComplete } from "@/components/MarkComplete";
+import { TableOfContents } from "@/components/TableOfContents";
 import { slugify } from "@/lib/search-index";
 import type { Metadata } from "next";
 
@@ -40,6 +42,7 @@ export default async function ChapterPage({ params }: PageProps) {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <TableOfContents />
       {/* Chapter header */}
       <div className="mb-10">
         <Link
@@ -66,6 +69,11 @@ export default async function ChapterPage({ params }: PageProps) {
           <ContentRenderer key={i} block={block} />
         ))}
       </article>
+
+      {/* Mark complete */}
+      <div className="mt-12 flex justify-center">
+        <MarkComplete slug={slug} />
+      </div>
 
       {/* Navigation */}
       <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-4">

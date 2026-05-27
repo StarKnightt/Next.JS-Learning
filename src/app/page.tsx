@@ -2,6 +2,7 @@ import { ChapterCard } from "@/components/ChapterCard";
 import { chapters } from "@/lib/chapters";
 import { TypingCode } from "@/components/TypingCode";
 import { HeroAnimations, FadeInUp, StaggerContainer, StaggerItem } from "@/components/HeroAnimations";
+import { ProgressBar } from "@/components/ProgressBar";
 import Link from "next/link";
 
 export default function Home() {
@@ -68,6 +69,7 @@ export default function Home() {
 
       {/* What you'll learn */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <ProgressBar />
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <StaggerItem><StatCard number="17" label="Chapters" color="bg-brutal-cyan/30" /></StaggerItem>
           <StaggerItem><StatCard number="50+" label="Code Examples" color="bg-brutal-lime/30" /></StaggerItem>

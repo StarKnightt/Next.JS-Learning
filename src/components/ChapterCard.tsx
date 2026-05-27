@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChapterCheck } from "./ChapterCheck";
 
 interface ChapterCardProps {
   number: number;
@@ -20,7 +21,8 @@ export function ChapterCard({ number, title, description, slug, level, color }: 
 
   return (
     <Link href={`/chapters/${slug}`}>
-      <div className={`brutal-border ${color} p-5 brutal-shadow brutal-hover cursor-pointer h-full flex flex-col`}>
+      <div className={`brutal-border ${color} p-5 brutal-shadow brutal-hover cursor-pointer h-full flex flex-col relative`}>
+        <ChapterCheck slug={slug} />
         <div className="flex items-center justify-between mb-3">
           <span className="brutal-border bg-white w-10 h-10 flex items-center justify-center font-bold text-lg">
             {number.toString().padStart(2, "0")}
