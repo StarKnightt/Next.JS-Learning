@@ -1,0 +1,40 @@
+name: New Chapter Proposal
+description: Propose a new chapter or topic to cover
+labels: ["content", "enhancement"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Chapter Topic
+      placeholder: e.g., Internationalization (i18n)
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Difficulty Level
+      options:
+        - Beginner
+        - Intermediate
+        - Advanced
+    validations:
+      required: true
+  - type: textarea
+    id: outline
+    attributes:
+      label: What should it cover?
+      description: Brief outline of sections or concepts.
+      placeholder: |
+        - Setting up i18n in Next.js
+        - Language detection
+        - Route-based localization
+        - Translation files
+    validations:
+      required: true
+  - type: textarea
+    id: resources
+    attributes:
+      label: Reference resources
+      description: Any docs, videos, or articles that could help write this chapter?
+    validations:
+      required: false
