@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: "Next.js Learning | by Prasen",
     description:
       "Master Next.js from zero to production. 17 chapters, neo-brutalism design, curated YouTube videos.",
-    creator: "@Star_Knight12",
+    creator: "@prasenx",
   },
   robots: {
     index: true,
@@ -91,7 +91,7 @@ export default function RootLayout({
       url: "https://prasen.dev",
       sameAs: [
         "https://github.com/StarKnightt",
-        "https://x.com/Star_Knight12",
+        "https://x.com/prasenx",
       ],
     },
     publisher: {

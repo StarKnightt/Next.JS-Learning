@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: "summary_large_image",
       title: `${chapter.title} | Next.js Learning`,
       description: chapter.description,
-      creator: "@Star_Knight12",
+      creator: "@prasenx",
     },
   };
 }

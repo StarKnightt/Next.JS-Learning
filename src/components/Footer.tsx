@@ -72,7 +72,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://x.com/Star_Knight12" target="_blank" rel="noopener noreferrer" className="hover:text-brutal-lime transition-colors">
+                <a href="https://x.com/prasenx" target="_blank" rel="noopener noreferrer" className="hover:text-brutal-lime transition-colors">
                   Twitter/X ↗
                 </a>
               </li>

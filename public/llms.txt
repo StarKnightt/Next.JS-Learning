@@ -56,7 +56,7 @@ This is a free, open-source educational resource for learning Next.js. Built by 
 Prasen (Prasenjit)
 - Website: https://prasen.dev
 - GitHub: https://github.com/StarKnightt
-- Twitter/X: https://x.com/Star_Knight12
+- Twitter/X: https://x.com/prasenx
 
 ## Other Projects by Prasen
 

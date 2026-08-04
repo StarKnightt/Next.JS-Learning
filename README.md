@@ -127,4 +127,4 @@ MIT
 
 ---
 
-Built by [Prasenjit](https://prasen.dev) | [GitHub](https://github.com/StarKnightt) | [Twitter/X](https://x.com/Star_Knight12)
+Built by [Prasenjit](https://prasen.dev) | [GitHub](https://github.com/StarKnightt) | [Twitter/X](https://x.com/prasenx)
