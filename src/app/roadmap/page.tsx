@@ -4,8 +4,20 @@ import { DiagramPreview } from "@/components/DiagramPreview";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Learning Roadmap | Next.js Learning by Prasen",
-  description: "Your visual guide to mastering Next.js, from zero to production.",
+  title: "Learning Roadmap",
+  description:
+    "Your visual guide to mastering Next.js, from zero to production. 17 chapters across beginner, intermediate, and advanced levels.",
+  alternates: {
+    canonical: "https://learn.prasen.dev/roadmap",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://learn.prasen.dev/roadmap",
+    title: "Learning Roadmap | Next.js Learning",
+    description:
+      "Your visual guide to mastering Next.js, from zero to production.",
+    siteName: "Next.js Learning by Prasen",
+  },
 };
 
 export default function RoadmapPage() {

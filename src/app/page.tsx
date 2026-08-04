@@ -10,8 +10,46 @@ export default function Home() {
   const intermediateChapters = chapters.filter((c) => c.level === "intermediate");
   const advancedChapters = chapters.filter((c) => c.level === "advanced");
 
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: "Next.js Learning by Prasen",
+    description:
+      "A complete free guide to mastering Next.js, from basics to production. 17 chapters covering App Router, Server Components, data fetching, authentication, SEO, and deployment.",
+    url: "https://learn.prasen.dev",
+    provider: {
+      "@type": "Person",
+      name: "Prasenjit",
+      url: "https://prasen.dev",
+    },
+    isAccessibleForFree: true,
+    inLanguage: "en",
+    educationalLevel: ["Beginner", "Intermediate", "Advanced"],
+    teaches: "Next.js, React, App Router, Server Components, TypeScript",
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: "online",
+      courseWorkload: "PT10H",
+    },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      category: "Free",
+    },
+    syllabusSections: chapters.map((c) => ({
+      "@type": "Syllabus",
+      name: `Chapter ${c.number}: ${c.title}`,
+      description: c.description,
+    })),
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
       {/* Hero */}
       <section className="brutal-border-thin border-t-0 border-x-0 bg-brutal-yellow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">

@@ -23,9 +23,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const chapter = getChapter(slug);
   if (!chapter) return {};
+  const url = `https://learn.prasen.dev/chapters/${slug}`;
   return {
-    title: `${chapter.title} | Next.js Learning by Prasen`,
+    title: chapter.title,
     description: chapter.description,
+    keywords: [
+      "Next.js",
+      "Next.js tutorial",
+      chapter.title,
+      `Next.js ${chapter.level}`,
+      "App Router",
+      "React",
+    ],
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: "article",
+      url,
+      title: `${chapter.title} | Next.js Learning`,
+      description: chapter.description,
+      siteName: "Next.js Learning by Prasen",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${chapter.title} | Next.js Learning`,
+      description: chapter.description,
+      creator: "@Star_Knight12",
+    },
   };
 }
 
@@ -40,8 +65,64 @@ export default async function ChapterPage({ params }: PageProps) {
 
   const { prev, next } = getAdjacentChapters(slug);
 
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      headline: chapter.title,
+      description: chapter.description,
+      url: `https://learn.prasen.dev/chapters/${slug}`,
+      author: {
+        "@type": "Person",
+        name: "Prasenjit",
+        url: "https://prasen.dev",
+      },
+      publisher: {
+        "@type": "Person",
+        name: "Prasenjit",
+        url: "https://prasen.dev",
+      },
+      isAccessibleForFree: true,
+      inLanguage: "en",
+      proficiencyLevel:
+        chapter.level === "beginner" ? "Beginner" : "Expert",
+      about: {
+        "@type": "SoftwareApplication",
+        name: "Next.js",
+        applicationCategory: "WebFramework",
+      },
+      isPartOf: {
+        "@type": "Course",
+        name: "Next.js Learning by Prasen",
+        url: "https://learn.prasen.dev",
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://learn.prasen.dev",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: `Chapter ${chapter.number}: ${chapter.title}`,
+          item: `https://learn.prasen.dev/chapters/${slug}`,
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <TableOfContents />
       {/* Chapter header */}
       <div className="mb-10">

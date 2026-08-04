@@ -1,6 +1,9 @@
 # Next.js Learning by Prasen
 
-> A comprehensive guide to mastering Next.js (v16), from absolute basics to production-ready patterns. 17 chapters covering the App Router, Server Components, data fetching, authentication, and deployment.
+> A comprehensive guide to mastering Next.js (v16.3), from absolute basics to production-ready patterns. 17 chapters covering the App Router, Server Components, data fetching, authentication, and deployment.
+
+Site: https://learn.prasen.dev
+Last updated: August 2026 (current with Next.js 16.3)
 
 ## About
 
@@ -42,7 +45,7 @@ This is a free, open-source educational resource for learning Next.js. Built by 
 
 ## Tech Stack
 
-- Next.js 16
+- Next.js 16.3
 - React 19
 - TypeScript
 - Tailwind CSS v4
